@@ -1,0 +1,68 @@
+<app-navigation></app-navigation>
+
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  
+    <!-- Including the  Angular JS CDN -->
+    <script src=
+"http://code.angularjs.org/1.2.0/angular.min.js">
+    </script>
+
+<script type="text/javascript">
+    function activarPrecio(event){
+    if(document.getElementById('price').getAttribute('disabled')) {
+        document.getElementById('price').removeAttribute('disabled')
+    }
+    else{
+        document.getElementById('price').setAttribute('disabled','true')
+    }
+    }
+</script>
+</head>
+<div style="display: flex;">
+
+    <div class="col-md-4 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <form action="">
+                    <label><input checked = "true" type="checkbox" name = "isProduct" [(ngModel)]="isProduct" value="first_checkbox" onchange="if(document.getElementById('price').getAttribute('disabled')) { document.getElementById('price').removeAttribute('disabled')}else{document.getElementById('price').setAttribute('disabled','true')}" ng-model="all"> Producto </label><br>
+                    
+                    <br>
+                    <div class="form-group">
+                        <input type="text" name="title" [(ngModel)]="publicationf.title" placeholder="Título" class="form-control" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <textarea name="description" [(ngModel)]="publicationf.description" placeholder="Descripción" rows="2" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input  type="number" id = "price" name="price" [(ngModel)]="publicationf.price" placeholder="Precio" class="form-control" autofocus>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="url" name="image" [(ngModel)]="publicationf.image" placeholder="Imagen" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                    <textarea name="ubication" [(ngModel)]="publicationf.ubication" placeholder="Ubicacion" rows="2" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <button class="btn btn-success btn-block" (click)="saveNewPublication()">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card card-body text-center">
+            <img [src]="publicationf.image">
+            <h3>{{publicationf.title == '' ? 'Título' : publicationf.title}}</h3>
+            <p>{{publicationf.description == '' ? 'Escriba una descripción': publicationf.description}}</p>
+            <p>{{publicationf.date | date: 'dd-MM-yyyy'}}</p>
+            <p>Q{{isProduct==true ?  publicationf.price : ''}}</p>
+        </div>
+    </div>
+</div>
